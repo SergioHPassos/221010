@@ -128,7 +128,7 @@ public class EvaluationService {
 	 * 4. Given a word, compute the scrabble score for that word.
 	 *
 	 * --Letter Values-- Letter Value A, E, I, O, U, L, N, R, S, T = 1; D, G = 2; B,
-	 * C, M, P = 3; F, H,sEquilateral V, W, Y = 4; K = 5; J, X = 8; Q, Z = 10; Examples
+	 * C, M, P = 3; F, H, V, W, Y = 4; K = 5; J, X = 8; Q, Z = 10; Examples
 	 * "cabbage" should be scored as worth 14 points:
 	 *
 	 * 3 points for C, 1 point for A, twice 3 points for B, twice 2 points for G, 1
@@ -140,9 +140,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TO Write an implementation for this method declaration
+		// lower case all letters 
+		string = string.toLowerCase();
+		int total = 0;
+		
+		// loop through word and check each letter
+		for(int i=0; i<string.length(); i++){
+			// check each letter for score, except for letters in point 1 category
+			if(string.charAt(i) == 'd' || string.charAt(i) == 'g'){ 
+				total += 2; // 2 points
+			} else if(string.charAt(i) == 'b' || string.charAt(i) == 'c' || string.charAt(i) == 'm' || string.charAt(i) == 'p'){
+				total += 3; // 3 points
+			} else if(string.charAt(i) == 'f' || string.charAt(i) == 'h' || string.charAt(i) == 'v' || string.charAt(i) == 'w' || string.charAt(i) == 'y'){
+				total += 4; // 4 points 
+			} else if(string.charAt(i) == 'k'){
+				total += 5; // 5 points
+			} else if(string.charAt(i) == 'j' || string.charAt(i) == 'x'){
+				total += 8; // 8 points
+			} else if(string.charAt(i) == 'q' || string.charAt(i) == 'z'){
+				total += 10; // 10 points
+			} else { // default 1 point case
+				total += 1;
+			}
+		}
 
-		return 0;
+
+		return total;
 	}
 
 	/**
