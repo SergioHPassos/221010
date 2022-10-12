@@ -1,5 +1,7 @@
 package com.revature.eval.java.core;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.time.temporal.Temporal;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,17 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		return null;
+		// variable for reverse word
+		String reverseWord = "";
+
+		// loop word in reverse
+		for(int i = string.length()-1; i >= 0; i--){
+			// reassign and append to reverse word variable
+			reverseWord = reverseWord.concat(Character.toString(string.charAt(i))); // "hello"
+		}
+
+		// return reverse word
+		return reverseWord;
 	}
 
 	/**
@@ -28,7 +40,25 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		return null;
+//		get words into an array
+		String[] words = phrase.split(" ");
+		StringBuilder tla = new StringBuilder("");
+
+//		loop through words and save each first letter
+		for (String word: words){
+//			edge case, hyphen
+			String[] edgeWords = word.split("-");
+			if(edgeWords.length > 1){
+				for(String edgeWord: edgeWords){
+					tla.append(edgeWord.charAt(0));
+				}
+			} else {
+//			    grab the first letter of each word
+				tla.append(word.charAt(0));
+			}
+		}
+
+		return tla.toString().toUpperCase();
 	}
 
 	/**
@@ -81,21 +111,15 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-
-			return false;
+			return ((sideOne == sideTwo) && (sideOne == sideThree) && (sideTwo == sideThree)) ? true : false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-
-			return false;
+			return ((sideOne == sideTwo) || (sideOne == sideThree) || (sideTwo == sideThree)) ? true : false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-
-			return false;
+			return ((sideOne != sideTwo) && (sideOne != sideThree) && (sideTwo != sideThree)) ? true : false;
 		}
 
 	}
